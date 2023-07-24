@@ -1,7 +1,7 @@
 'use client'
 
 import Image from 'next/image';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { ReactCompareSlider, ReactCompareSliderHandle } from 'react-compare-slider';
 
@@ -14,9 +14,11 @@ import badMobile from '@/assets/bad-mobile.png'
 function useMediaQuery(query: string) {
   const [matches, setMatches] = useState(window.matchMedia(query).matches);
 
-  useState(() => {
+  useEffect(() => {
     const mediaQuery = window.matchMedia(query);
     const updateMatches = () => setMatches(mediaQuery.matches);
+
+    setMatches(mediaQuery.matches)
 
     mediaQuery.addListener(updateMatches);
     return () => mediaQuery.removeListener(updateMatches);
