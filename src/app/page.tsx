@@ -11,7 +11,7 @@ import bad from '@/assets/bad.png'
 import badMobile from '@/assets/bad-mobile.png'
 
 
-function useMediaQuery(query) {
+function useMediaQuery(query: string) {
   const [matches, setMatches] = useState(window.matchMedia(query).matches);
 
   useState(() => {
