@@ -11,7 +11,12 @@ import bad from '@/assets/bad.png'
 import badMobile from '@/assets/bad-mobile.png'
 
 
+function isWindowDefined() {
+  return typeof window !== 'undefined'
+}
+
 function useMediaQuery(query: string) {
+  
   const [matches, setMatches] = useState(window.matchMedia(query).matches);
 
   useEffect(() => {
