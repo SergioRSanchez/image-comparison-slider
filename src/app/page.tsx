@@ -12,10 +12,10 @@ export default function Home() {
     return (
       <div className='flex flex-col items-center justify-between py-16 min-h-screen overflow-hidden' style={{background: 'linear-gradient(90deg, #09090A 0%, #181719 37.50%, #36343B 100%, #39363D 100%)'}}>
         <h1 className='text-lg sm:text-3xl text-white font-bold'>Image Comparison</h1>
-        <div className='px-2 sm:px-0 sm:rounded-2xl rounded-3xl overflow-hidden'>
+        <div className='mx-2 rounded-2xl overflow-hidden border-[4px] border-white'>
           <ReactCompareSlider
-            itemOne={<Image src={bad} alt='low resolution image of a smiling girl' className='rounded-2xl '/>}
-            itemTwo={<Image src={good} alt='high resolution image of a smiling girl' className='rounded-2xl '/>}
+            itemOne={<Image src={bad} alt='low resolution image of a smiling girl'/>}
+            itemTwo={<Image src={good} alt='high resolution image of a smiling girl'/>}
             handle={<ReactCompareSliderHandle buttonStyle={{WebkitBackdropFilter: undefined, backdropFilter: undefined, backgroundColor: 'white', border: 0, boxShadow: undefined, color: '#444'}} linesStyle={{ color: 'white', width: '4px'}} />}
             position={50}
           />
