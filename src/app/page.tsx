@@ -1,66 +1,31 @@
 'use client'
 
 import Image from 'next/image';
-import { useEffect, useState } from 'react';
 
 import { ReactCompareSlider, ReactCompareSliderHandle } from 'react-compare-slider';
+import { Github, Linkedin } from 'lucide-react'
 
 import good from '@/assets/good.png'
-import goodMobile from '@/assets/good-mobile.png'
 import bad from '@/assets/bad.png'
-import badMobile from '@/assets/bad-mobile.png'
-
-
-function isWindowDefined() {
-  return typeof window !== 'undefined'
-}
-
-function useMediaQuery(query: string) {
-  
-  const [matches, setMatches] = useState(window.matchMedia(query).matches);
-
-  useEffect(() => {
-    const mediaQuery = window.matchMedia(query);
-    const updateMatches = () => setMatches(mediaQuery.matches);
-
-    setMatches(mediaQuery.matches)
-
-    mediaQuery.addListener(updateMatches);
-    return () => mediaQuery.removeListener(updateMatches);
-  }, [query]);
-
-  return matches;
-}
-
 
 export default function Home() {
-
-  const matches = useMediaQuery('(min-width: 769px)');
-
-  if (matches) {
     return (
-      <div>
-        <ReactCompareSlider
-          itemOne={<Image src={bad} alt='' style={{width: '100%', height: '100vh'}}/>}
-          itemTwo={<Image src={good} alt='' style={{width: '100%', height: '100vh'}}/>}
-          handle={<ReactCompareSliderHandle style={{ }} buttonStyle={{WebkitBackdropFilter: undefined, backdropFilter: undefined, backgroundColor: 'white', border: 0, boxShadow: undefined, color: '#444'}} linesStyle={{ color: 'white', width: '4px'}} />}
-          position={50}
-          style={{width: '100%', height: '100vh'}}
-        />
+      <div className='flex flex-col items-center justify-between py-16 min-h-screen overflow-hidden' style={{background: 'linear-gradient(90deg, #09090A 0%, #181719 37.50%, #36343B 100%, #39363D 100%)'}}>
+        <h1 className='text-lg sm:text-3xl text-white font-bold'>Image Comparison</h1>
+        <div className='px-2 sm:px-0 sm:rounded-2xl rounded-3xl overflow-hidden'>
+          <ReactCompareSlider
+            itemOne={<Image src={bad} alt='low resolution image of a smiling girl' className='rounded-2xl '/>}
+            itemTwo={<Image src={good} alt='high resolution image of a smiling girl' className='rounded-2xl '/>}
+            handle={<ReactCompareSliderHandle buttonStyle={{WebkitBackdropFilter: undefined, backdropFilter: undefined, backgroundColor: 'white', border: 0, boxShadow: undefined, color: '#444'}} linesStyle={{ color: 'white', width: '4px'}} />}
+            position={50}
+          />
+        </div>
+        <div className='flex items-center gap-3'>
+          <p className='text-white text-xs select-none'>Made by <span className='text-sm underline underline-offset-2'> Sérgio Sanchez</span></p>
+          <a href="https://github.com/SergioRSanchez" target='_blank'><Github color='white' className='w-4 h-4 sm:w-6 sm:h-6 hover:scale-110 transition-all duration-300 hover:' /></a>
+          <a href="https://www.linkedin.com/in/sergio-roberto-sanchez-filho/" target='_blank'><Linkedin color='white' className='w-4 h-4 sm:w-6 sm:h-6 hover:scale-x-110 transition-all duration-300' /></a>
+        </div>
       </div>
     )
-  } else {
-    return (
-      <div className='flex items-center justify-center '>
-        <ReactCompareSlider
-          itemOne={<Image src={badMobile} alt='' style={{width: '100%', height: '100vh'}}/>}
-          itemTwo={<Image src={goodMobile} alt='' style={{width: '100%', height: '100vh'}}/>}
-          handle={<ReactCompareSliderHandle portrait buttonStyle={{WebkitBackdropFilter: undefined, backdropFilter: undefined, backgroundColor: 'white', border: 0, boxShadow: undefined, color: '#444'}} linesStyle={{ color: 'white', width: '4px'}} />}
-          portrait
-          position={50}
-          style={{width: '100%', height: '100vh'}}
-        />
-      </div>
-    )
-  }
+ 
 }
